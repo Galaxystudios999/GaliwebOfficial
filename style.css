@@ -1,0 +1,50 @@
+body {
+    width: 100%;
+    padding: 0px;
+    min-height: 100vh;
+    margin: 0;
+}
+
+#GaliwebText {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+
+    width: 100%;
+    animation: Intro 1.5s ease-in forwards;
+
+    background: linear-gradient(purple, red);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+@keyframes Intro
+{
+0% {
+    transform: scale(1.0);
+    opacity: 1;
+}
+
+25% {
+    transform: scale(1.5);
+    opacity: 0.8;
+}
+
+50% {
+    transform: scale(2.0);
+    opacity: 0.6;
+}
+
+80% {
+    transform: scale(2.8);
+    opacity: 0.2;
+}
+
+100% {
+    transform: scale(3.6);
+    opacity: 0;
+}
+}
