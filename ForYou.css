@@ -1,0 +1,50 @@
+body {
+    position: relative;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.MainPage {
+    position: absolute;
+    top: 20px;        
+    left: 50%;
+    transform: translateX(-50%); 
+
+    display: flex;      
+    flex-direction: row;
+    gap: 40px; 
+    z-index: 10;
+}
+
+
+.tab-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#FollowLabel, #ForYouLabel {
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    white-space: nowrap; 
+}
+
+
+#Follow, #ForYou {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2; 
+}
