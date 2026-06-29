@@ -13,3 +13,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+let LoginButton = document.getElementById("LoginButton");
+let LoginDetails = document.querySelector(".LoginDetails");
+
+LoginButton.addEventListener("touchstart", () => {
+  e.preventDefault();
+  LoginDetails.style.visibility = "visible";
+});

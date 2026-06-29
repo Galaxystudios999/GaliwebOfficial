@@ -1,0 +1,58 @@
+#LoginButton {
+    width: 100%;
+    max-width: 300px; 
+    z-index: 1;
+    
+    padding: 12px 24px; 
+    
+    border-radius: 12px;
+    border: none; 
+    
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1rem; 
+    font-weight: bold;
+    color: azure;
+
+    background-color: black;
+    cursor: pointer; 
+}
+
+
+.LoginDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    max-width: 320px;
+    padding: 20px;
+    visibility: hidden;
+}
+
+#SubmitButton {
+    width: 100%;
+    padding: 14px 28px;
+    z-index: 1;
+    
+  
+    background: linear-gradient(135deg, #1e1e1e 0%, #000000 100%);
+    color: #f0f8ff; 
+    
+    
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.05rem;
+    font-weight: bold;
+    letter-spacing: 0.5px; 
+    text-transform: uppercase; 
+    
+    border: 1px solid rgba(240, 248, 255, 0.1); 
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+
+#SubmitButton:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
