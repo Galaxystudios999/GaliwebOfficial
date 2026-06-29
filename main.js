@@ -27,11 +27,13 @@ let passwordInput = document.getElementById("Password");
 export let IsLoggedIn = false;
 
 
-LoginButton.addEventListener("click", () => {
+LoginButton.addEventListener("touchstart", (e) => {
+  e.preventDefault;
   LoginDetails.style.visibility = "visible";
 });
 
-SubmitButton.addEventListener("click", () => {
+SubmitButton.addEventListener("touchstart", (e) => {
+  e.preventDefault;
   const email = emailInput.value;
   const password = passwordInput.value;
 
