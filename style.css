@@ -28,6 +28,11 @@ body {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #SplashScreen{

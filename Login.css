@@ -21,10 +21,36 @@
 .LoginDetails {
     display: flex;
     flex-direction: column;
+
     gap: 15px; 
     max-width: 320px;
     padding: 20px;
+
     visibility: hidden;
+}
+
+#Password {
+    border-color: red;
+    border-width: 4px;
+    border-radius: 10px;
+
+    color: rgb(0, 162, 255);
+
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: bold;
+}
+
+#Email {
+    border-color: red;
+    border-width: 4px;
+    border-radius: 10px;
+
+    color: rgb(0, 162, 255);
+
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: bold;
 }
 
 #SubmitButton {
