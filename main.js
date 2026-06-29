@@ -17,7 +17,7 @@ const analytics = getAnalytics(app);
 let LoginButton = document.getElementById("LoginButton");
 let LoginDetails = document.querySelector(".LoginDetails");
 
-LoginButton.addEventListener("touchstart", () => {
+LoginButton.addEventListener("touchstart", (e) => {
   e.preventDefault();
   LoginDetails.style.visibility = "visible";
 });
