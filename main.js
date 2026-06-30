@@ -1,7 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-// 1. Import Email/Password Auth tools from the CDN
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"; 
 
 const firebaseConfig = {
   apiKey: "AIzaSyDRWYKmIGoe2HSPXoZEqS6ZMv8yXhOSpt0",
@@ -16,7 +18,26 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
+async function saveUserPreference(tabName) {
+    const user = auth.currentUser;
+    
+    if (user) {
+        try {
+            await setDoc(doc(db, "users", user.uid), {
+                lastSelectedTab: tabName,
+                savedAt: new Date()
+            }, { merge: true }); 
+            console.log(`Saved ${tabName} choice to ${user.email}`);
+        } catch (error) {
+            console.error("Error saving preference: ", error);
+        }
+    } else {
+        console.log("No user is logged in. Saving locally to localStorage instead.");
+        localStorage.setItem("selectedTab", tabName);
+    }
+}
 
 let LoginButton = document.getElementById("LoginButton");
 let LoginDetails = document.querySelector(".LoginDetails");
@@ -26,14 +47,11 @@ let passwordInput = document.getElementById("Password");
 
 export let IsLoggedIn = false;
 
-
-LoginButton.addEventListener("touchstart", (e) => {
-  e.preventDefault;
-  LoginDetails.style.visibility = "visible";
+LoginButton.addEventListener("click", (e) => {
+  LoginDetails.style.display = "flex"; 
 });
 
-SubmitButton.addEventListener("touchstart", (e) => {
-  e.preventDefault;
+SubmitButton.addEventListener("click", (e) => {
   const email = emailInput.value;
   const password = passwordInput.value;
 
@@ -42,15 +60,33 @@ SubmitButton.addEventListener("touchstart", (e) => {
       const user = userCredential.user;
       console.log("Logged in user:", user.email);
       
-      LoginDetails.style.visibility = "hidden";
-      LoginButton.style.visibility = "hidden";
+      const localTab = localStorage.getItem("selectedTab") || "For You";
+      saveUserPreference(localTab); 
+      
+      LoginDetails.style.display = "none";
+      LoginButton.style.display = "none";
       IsLoggedIn = true; 
       
       alert("Successfully logged in!");
     })
     .catch((error) => {
-      
       console.error("Login failed:", error.message);
       alert(error.message);
     });
+});
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log("User detected on load:", user.email);
+        IsLoggedIn = true;
+        
+        LoginButton.style.display = "none";     
+        LoginDetails.style.display = "none";
+    } else {
+        console.log("No active session found.");
+        IsLoggedIn = false;
+        
+        LoginButton.style.display = "block";
+        LoginDetails.style.display = "none"; 
+    }
 });
